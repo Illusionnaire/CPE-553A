@@ -1,0 +1,14 @@
+- A char is the minimum size that is addressable by your computer, which is usually 1 byte
+- A short is >= 2 bytes and <= int
+- Integers are 4 bytes
+- Integers give you the flexibility to allow signed integers or unsigned integers. When unsigned you can ultimately double the size of the data type. (2.147 bil) 
+- uint32_t gives you the data type that is 32 bits unsigned
+- uint64_t gives you the data type that is 64 bits unsigned
+- uint8_t , uint16_t, int8_t, int16_t, int32_t, int64_t 
+
+- Integer truncation
+- Adding an L to the end of a number forces it into the long data type
+    - Type Promotion: When two types are different, promote the smaller number into the larger data type. eg. int * long = long
+
+- Double precision is accurate to 15 digits while float numbers are accurate to 7.
+- Roundoff error can very negatively effect floats, and therefore doubles are more commonly used.
