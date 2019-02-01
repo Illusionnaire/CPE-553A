@@ -1,0 +1,50 @@
+Pre-Quiz:
+1) int a = 1000 * 1000 is a valid operation because int is 32-bits and can hold up to 2.147bil
+2) int b = 15 / 2 * 2  will make b = 14 due to integer flooring
+3) int c = 3 % 3 * 3 will make c = 0 because 3 % 3 gives no remainder
+4) int d = 2 + 3 * 4 will give d = 14 because order of operations still matters
+5) int e = 15 / (2 * 2) will give e = 3 because order of operations in parenthesis matters
+6) uint16_t f = 65534 + 2 will be 0 because it surpasses its max by 1 and re-loops back to 0.
+
+16 bits = 65536 numbers ; 32 bits = 2.147bil 
+
+double x = 3 + 1 / 2 would actually give two integer operations before making it into a type double
+double  y= 3 * 1.5 gives 4.5 because the 3 undergoes "Type Promotion" from an integer into a double
+
+// Look up cmath library. The math.h is the old version and shouldn't be used anymore.
+// #include <string> and <cmath>
+// Things like sin(), cos(), tan(), sqrt(), atan(), round()
+// Scientific notation like 1.2324E+3
+
+- The optimizer on your compiler is allowed to change any part of your program as long as it does not change the behavior of the code
+- In assembly, a simple function can be optimized from something like 10 lines of assembly into a single line sometimes
+- All constants within arithmetic are simplified in compile time so 365*24*60*60 isn't actually multiple clock cycles of multiplication
+
+
+- If you have a function called hello(), you are technically allowed to say hello; but it will give you the location in memory that the code hello() is stored in
+- New parsing/casting in C++11 is int(5.23) would give 5
+- Inline function type allows a function to be written for performance sake without the function call:
+    inline double function(double x)
+        return x*x;
+                - With inline, the code would actually optimize to put x*x into the machine language code instead of calling for the function because it is faster.
+                - Not all inlines are better because injecting the function into the code itself can increase the size of the program. It allows removal of compression for speed.
+
+- "Function overloading" allows for multiple different functions to take different types of parameters and allow it to do other types of functions.
+
+- At the end of a string there is a \0 (control ^@) which is called the ASCII NUL and signifies the end of a string.
+- Addition is defined in strings with concatination (if a = "abc" then a+a = "abcabc")
+- If you create a string cin input, it will read until the first space. 
+
+// <sstream> (String stream) 
+// <fstream> (File stream)
+// <iomanip> (I/O Manipulation) to choose how to print
+// ifstream == input file stream
+// If you open a file that does not exist, you will be at the end of the file
+
+Usually, when a variable is passed as a parameter, a copy is made into a stack and the stack is passed through (See compiler assembly code)
+int& x means that x is a reference to the integer instead of a copy so you can change the number within the function call.
+
+//Read IEEE 754 standard on infinity and NaN
+//Read article on biohacking (Living until 180) for fun
+
+For an array, if any values are initialized the rest are zero. int e[100] = {0}; means all elements of e are zero. (C rule)
