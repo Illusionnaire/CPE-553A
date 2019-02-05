@@ -12,10 +12,6 @@
 using namespace std;
 
 const double PI = 3.14159265359;
-//Pseudo code:
-// 1. Open the file and import the values into the program
-// 2. Do math calculations on these values based on function polar2Rect()
-// 3. Output the new location
 
 
 //A table of 2 columns is made in file input with dynamic length.
