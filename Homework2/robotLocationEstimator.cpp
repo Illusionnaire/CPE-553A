@@ -4,16 +4,6 @@
     I pledge my honor I have abided by the Stevens Honor System
 */
 
-//Open a text file hw3c.dat.
-// Each line will have two numbers.  The first is an angle theta (in degrees, with North = 0 going clockwise so East = 90 and West = 270.  The second number is the distance.
-// Starting at location x=0, y = 0 compute the location of a robot if it follows the instructions.  Stop when either theta or distance is negative.  For example:
-// 90.0 5.0           output should be:    Location: x = 5.0, y = 0.0
-// 180.0 3.0         output should be:    Location: x = 5.0, y = -3.0
-// 45.0 2.0           output should be:    Location: x = 6.4142, y = -1.5858
-// -1 -1                 program terminates.
-// As part of your program, write a function:
-// polar2Rect(r, theta, dx,dy);
-// that takes in two double precision parameters r and theta, and returns (by reference) the two answers dx and dy.
 #include <fstream>
 #include <iostream>
 #include <cmath>
@@ -57,8 +47,9 @@ vector<std::array<double, 2>> valueImport(vector<std::array<double, 2>> fileinpu
 void Polar2Rect(double r, double theta, double& dx, double& dy){
     double x,y;
 
-    dx = r*cos(theta*PI/180);
-    dy = r*sin(theta*PI/180);
+    //-(Theta - 90) is taken in order to translate North to 0 degrees and inverse to go clockwise
+    dx = r*cos((-(theta-90))*PI/180);
+    dy = r*sin((-(theta-90))*PI/180);
 
     //To help fix the issues with rounded PI value.
     if ((dx < 1e-5 && dx > 0) || (dx > -1e-5 && dx < 0)){
@@ -72,7 +63,7 @@ void Polar2Rect(double r, double theta, double& dx, double& dy){
 int main(){
     double x = 0, y = 0;
     double dx = 0, dy = 0;
-    double r = 5, theta = 30;
+    double r = 0, theta = 0;
     vector<std::array<double, 2>> vect;
     
     vect = valueImport(vect,"hw3c.dat");
