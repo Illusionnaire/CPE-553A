@@ -1,0 +1,51 @@
+- int a[10] makes an array but does not initialize it
+- b[10] = {5} creates an array with b[0] = 5 and the rest are zero
+
+- Object Oriented Programming Important:
+    - Objects are created in order to suffice a need that is useful to people.
+    - They give functionality to things that are generally used multiple times.
+    - All objects must have a unique identity. 
+
+// &variable is a reference to a address location like 0000x008,etc.
+
+// A class is a kind of object
+// An object is an instance of a class
+// When we create an instance of a class we are instantiating the class
+// Methods are functions inside an object. They are functions that only work on a single object.
+// Message is a call to an object method
+// In C++ method = message (You cannot call a method that does not exist, your program will not build)
+
+// In C++, all declarations end in a semicolon
+// Intializing a C++ class has a different syntax. 
+
+void print() const {} = means this is a read-only function that does not change the object.
+
+
+class Fraction {
+private:
+    int num, den;
+
+public:
+    Fraction(int n, int d) : num(n), den(d) {}
+    void print(){
+        cout << num << '/' << den;
+    }
+    friend Fraction operator+(Fraction x,Fraction y); -----------> "friend" keyword allows functions called outside to use private data like num and den
+};
+
+    Fraction operator+(Fraction x, Fraction y){ -------------> "operator+" keyword allows you to say Fraction c = a + b;
+        return Fraction ans(x.num*y.den+y.num*x.den, x.den * y.den);
+    }
+
+- Every class needs to create a constructor to initialize the object with different argument types.
+
+class Fraction {
+private:
+    int num, den;
+
+public:
+    Fraction(int n, int d) : num(n), den(d) {}
+    void print(){
+        cout << num << '/' << den;
+    }
+};
