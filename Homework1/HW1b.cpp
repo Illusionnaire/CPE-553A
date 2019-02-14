@@ -30,12 +30,12 @@ int main(){
 
 
     switch(i){
-        case 10: cout << i << "th Polygon Diagonal Length: " << radius << endl; break;
-        case 100: cout << i << " Radius: " << radius << endl; break;
-        case 1000: cout << i << " Radius: " << radius << endl; break;
-        case 10000: cout << i << " Radius: " << radius << endl; break;
-        case 100000: cout << i << " Radius: " << radius << endl; break;
-        case 1000000: cout << i << " Radius: " << radius << endl;
+        case 10: cout << i << "Radius: " << newRadius << endl; break;
+        case 100: cout << i << " Radius: " << newRadius << endl; break;
+        case 1000: cout << i << " Radius: " << newRadius << endl; break;
+        case 10000: cout << i << " Radius: " << newRadius << endl; break;
+        case 100000: cout << i << " Radius: " << newRadius << endl; break;
+        case 1000000: cout << i << " Radius: " << newRadius << endl;
     }
 
     radius = newRadius;
