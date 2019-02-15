@@ -1,0 +1,60 @@
+-Working with multiple files and make files
+
+extern void f(); //Let's you call to an external function that is in a different file.
+
+The second function does not have a main() function so it is an illegal function. In this case you need a make file that has a recipe.
+
+multipart: -file1- -file2-
+    g++ -g a.cc b.cc -o multipart
+
+to create it in cmd use: make -k
+-k => keep going
+
+Make automatically understands that if its parts have a more current "last editted" time than the main executable, it has to rebuild.
+Using make -k would force you to recompile the ENTIRE thing.
+
+Instead use:
+
+multipart: a.o b.o
+    g++ -g a.o b.o -o multipart
+
+a.o: a.cc
+    g++ -g -c a.cc
+
+b.o: b.cc
+    g++ -g -c b.cc
+
+Because this is annoying to constantly doing it. People have created "cmake" to create a make file from a bunch of files.
+There is also a tool called "ninja" that does this faster, but it is more complicated.
+
+Windows has .dll files that stand for dynamic linked library which lets your code call certain shared code (functions, API stuff)
+
+
+Including a header file:
+#include "Fraction.hh" or "Fraction.hpp"
+
+Fraction::Fraction(int n, int d) : num(n), den(d) {}
+
+//For friend function
+Fraction operator +(Fraction a, Fraction b){
+
+}
+
+//For member function
+Fraction Fraction::operator +(Fraction a){
+    return Fraction(this->den*a.num +);
+}
+
+frac: Fraction.o main.o
+    g++ Fraction.o main.o -o frac
+
+Fraction.o: Fraction.hh Fraction.cc
+    g++ -c Fraction.cc
+
+main.o: main.cc Fraction.hh
+    g++ -c main.cc
+
+
+static is another word for "shared" --> extern 
+
+
