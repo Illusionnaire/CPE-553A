@@ -1,0 +1,34 @@
+using #include <vector>
+- Vector is a data type that holds dimensional data and grows dynamically
+
+    vector<int> a;
+    a.reserve(10000); ==> if you know you need 10,000 spots, you can reserve it before hand and it makes the allocation faster.
+
+    for (auto x : a){} ==> make a variable x that automatically is set to the same data type as "a" and then go through it.
+
+- Learned about static variables within classes, which are shared between all instances of those structures.
+- Looked into Julian Dates and how to store date values within a computer.
+
+-Inheritance
+    class Circle: public Shape {} ===> A circle (is a) Shape
+    class Rect: public Shape {} ===> A rectangle (is a) Shape
+
+class Shape {
+public:
+    virtual area() const = 0;
+    virtual perimeter const = 0;
+};
+    - The word virtual specifies that this is an abstract class and that all classes that inherit it must create these methods.
+
+-Polymorphism
+    Every object receives a pointer which points to a table called the "VFT" - Virtual Function table
+    The Virtual Function Table contains 
+
+    You can create a polymorphic array or vector with a little interesting manipulation with pointers.
+    A vector or array needs a specific data type size, i.e. int or double. Because of this, if you cannot have a vector of <Circle> and <Rect> at the same time
+    Instead, you can make a vector<pointers> where they are 8-byte numbers that point to memory locations that can be any size you want.
+
+    int*p = &a ===> read it backwards as if it where ===> p (points to) int (stored in address of a)
+    therefore: *p = 5;  (p points to &a) changes the value of a.
+    therefore: p = 5;  (p's address = 5) and is no longer referencing a.
+    
