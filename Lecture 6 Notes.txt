@@ -1,0 +1,105 @@
+- The name of an array is the pointer to the first element of an array.
+- If you add ++ to a pointer, it advances to the next element in the size of the pointer. If you have an integer point p, p++ will point to 4 bytes later.
+
+OLD METHOD OF INCLUDE STUFF:
+#ifndef BITMAP_HH__
+#define BITMAP_HH__
+    -code within header declaration files-
+    -goes here-
+#endif
+
+NEW METHOD OF INCLUDE STUFF:
+#pragma once --> at the top of your file
+
+------------
+Makefile Rules:
+3 files: main.cc, Bitmap.hh, Bitmap.cc
+
+Makefile Variables:
+DEBUG :=    -g
+CXX :=  g++ $(DEBUG)
+
+------------
+bitmap: main.o Bitmap.o:
+    $(CXX) main.o bitmap.o -o bitmap
+
+main.o: main.cc Bitmap.hh
+    $(CXX) -c main.cc
+
+Bitmap.o: Bitmap.hh Bitmap.cc
+    $(CXX) -c Bitmap.cc
+------------
+
+Polymorphism: Calling different functions at runtime depending on the object
+
+
+Dynamic Memory Allocation
+===================
+Class Cow {};
+
+int main() {
+    int n;
+    cin >> n;
+    int*p = new int[1000000];
+    
+    delete [] pp;
+
+    int*q = malloc(1024*sizeof(int));
+    free(q);
+
+    int*w = new Cow;
+    delete w;
+}
+
+
+String Class
+=======================
+class String {
+private:
+    char* s;
+    int len;
+public:
+    String() : s(nullptr), len(0) {}
+    String(const char str[]){
+        int count = 0;
+        while (str[count] != '\0') {
+            count++
+        }
+    s = new char[count];
+    for (int i = 0; i < count; i++)
+        s[i] = str[i];
+    len = count;
+    }
+    ~String() {delete [] s;}
+
+    friend void operator +=(String& a, const String& b){
+        const char* old = a.s;
+        a.s = new char [a.len + b.len];
+        for(int i = 0; i < a.len; i++){
+            a.s[i] = old[i];
+        }
+        for(int i = 0; i < b.len; i++){
+            a.s[a.len+i] = b.s[i];
+        }
+        a.len += b.len;
+    }
+
+    friend ostream& operator <<(ostream& s, const String& str){
+        for (int i =0; i < str.len; i++){
+            s << str.s[i];
+        }
+        return s;
+    }
+};
+
+int main() {
+    String s;
+    String s2("abc");
+    s += s2;
+    s += s2;
+    cout << s << '\n';
+}
+
+
+
+
