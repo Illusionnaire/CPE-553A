@@ -1,0 +1,42 @@
+Generic coding:
+    - template<typename T>
+
+static int count ===> extern int count; //Someone will initialize this outside of the class file (in one place)
+a static function can give you static variables.
+
+
+Dynamic Class Important Methods:
+-Copying and moving a large structure becomes intensive for each function/method that uses it since the default is to copy the whole item and then pass it through.
+-By overloading the copy,operator =, and move constructors we can make the objects pass by reference and therefore only make one copy instead of creating a copy to send it over, to then delete a copy (for example)
+
+-Copy Constructor, passes by reference the values of an old Bitmap and it makes a new one that has the same values, but with a new pixels size;
+-Copy Assignment, useful for if something is already the wrong size, it creates a new copy that takes the correct values and then swaps the values from the copied ones into the old one. When it returns back from the method call, the copy Bitmap is destroyed, and since the values were swapped with the wrong ones, the wrong ones get destroyed.
+-Move Constructor, overloads to not copy Bitmap calls, but instead move its values around for faster speeds. While copy creates a completely new object and then copies the values over, move only takes values from one place into another.
+
+Copy Constructor:
+Bitmap(const Bitmap& orig): width(orig.width), height(orig.height), pixels(new uint32_t[width*height]){
+    //memcpy(to what, from what, how big)
+    memcpy(pixels,orig.pixels,width*height*sizeof(uint32_t));
+    
+    //You can also just loop through and replace pixels with orig.pixels but memcpy is always faster or even with that loop speed
+}
+
+Copy Assignment (Operator +):
+//Need to use <memory.h> library
+Bitmap& operator =(const Bitmap& orig){
+    Bitmap copy(orig); //This uses the copy constructor above
+    this->width = copy.width;
+    this->height = copy.height;
+    swap(this->pixels,copy.pixels);
+    return *this;
+}
+
+Deconstructor (~Bitmap):
+~Bitmap(){
+    delete [] pixels;
+}
+
+Move Operator:
+Bitmap(Bitmap&& orig) : width(orig.width), height(orig.height), pixels(orig.pixels){
+    orig.pixels = nullptr;
+}
