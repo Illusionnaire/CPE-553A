@@ -1,0 +1,43 @@
+Exceptions and Throw/Catch:
+- If you want to make error proof code, your code will grow by like a factor of 4 or 5.
+- You can create a try/catch statement within the constructor to disallow a user from creating a bad value.
+- In C++ you are allowed to throw an object that you can create to be whatever you want, so you can use a class object to report the bug and information about it.
+- Built into c++ you can see what line and file you are in by using __LINE__ and __FILE__
+
+
+#include <iostream>
+using namespace std;
+
+int f(int n){
+    if (n == 0)
+        throw "Divide by zero";
+    
+    return 1 / n;
+}
+
+int main() {
+    try {
+        cout << f(3) << '\n';
+        cout << f(0) << '\n';
+    } catch(const char* message){
+        cout << "Error: " << msg << '\n';
+    }
+
+}
+
+-----------------------------------------------------
+
+class BadSize(){
+private:
+    const char* filename;
+    int lineNum;
+public:
+    BadSize(const char filename[], int lineNum) : filename(filename), lineNum(lineNum) {}
+
+    friend ostream& operator <<(ostream& s, const BadSize& b){
+        return s << b.filename << " : " << b.lineNum << " size mismatch";
+    }
+}
+
+
+-github101 look up how to do upstream
